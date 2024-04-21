@@ -1,3 +1,4 @@
+#include <array>
 #include <iostream>
 #include <iomanip>
 
@@ -12,7 +13,7 @@ int main()
 	constexpr int size_x = 10;
 	constexpr int size_total = size_x * size_y;
 
-	int arr[size_total] = {};
+	std::array<int, size_total> arr = {};
 	int nested_arr[size_y][size_x] = {};
 
 	for (int y = 0; y < size_y; y++)
