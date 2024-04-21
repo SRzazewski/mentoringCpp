@@ -26,27 +26,20 @@ void reverse(int* arr, int size)
 
 bool compare(const int* lhs_arr, int lhs_size, const int* rhs_arr, int rhs_size)
 {
-    if (lhs_size == rhs_size)
-    {
-        for(int i = 0; i < lhs_size; i++)
-        {
-            if(lhs_arr[i] == rhs_arr[i])
-            {
-                if (i == lhs_size - 1)
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
-    else
+    if (lhs_size != rhs_size)
     {
         return false;
     }
+
+    for(int i = 0; i < lhs_size; i++)
+    {
+        if(lhs_arr[i] != rhs_arr[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 int main()
@@ -58,5 +51,5 @@ int main()
 	copy(arr1, arr2, sz);
 	reverse(arr2, sz);
 	reverse(arr2, sz);
-	std::cout << std::boolalpha << compare(arr1, sz, arr2, sz);
+	std::cout << std::boolalpha << compare(arr1, sz, arr2, sz) << "\n";
 }
