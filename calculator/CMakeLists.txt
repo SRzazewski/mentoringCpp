@@ -1,1 +1,2 @@
-add_subdirectory(src)
+add_subdirectory(CalculatorApp)
+add_subdirectory(DisplayCalculator)

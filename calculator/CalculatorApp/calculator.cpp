@@ -1,4 +1,5 @@
 #include <iostream>
+#include "display_cal.hpp"
 
 bool operationiscorrect(std::string operation)
 {
@@ -30,7 +31,9 @@ bool operationiscorrect(std::string operation)
 
 int main()
 { 
-    std::cout << "Welcome to the Calculator\n";
+    display_cal display_msgs;
+
+    std::cout << display_msgs.get_welcome_msg();
     std::cout << "Possible operation:\n";
     std::cout << "\"+\" - adding\n";
     std::cout << "\"-\" - subtraction\n";
@@ -71,7 +74,7 @@ int main()
     {
         while (b == 0)
         {
-            std::cout << "b can not be equal 0!!\nEnter other value for b:";
+            std::cout << "b can not be equal 0!\nEnter other value for b:";
             std::cin >> b;
         }
         float result = a / b;
