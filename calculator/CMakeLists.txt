@@ -1,1 +1,2 @@
-add_subdirectory(src)
+add_subdirectory(calculator_main)
+add_subdirectory(cal_display)
