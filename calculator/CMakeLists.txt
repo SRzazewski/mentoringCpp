@@ -1,2 +1,2 @@
-add_subdirectory(CalculatorApp)
-add_subdirectory(DisplayCalculator)
+add_subdirectory(calculator_main)
+add_subdirectory(cal_display)
