@@ -6,6 +6,8 @@
 class cal_display
 {
 public:
+    cal_display();
+    ~cal_display();
     std::string get_welcome_msg() const;
     std::string get_operation_list_head_msg() const;
     std::string get_operation_list_adding_msg() const;

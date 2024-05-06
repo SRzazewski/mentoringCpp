@@ -1,5 +1,9 @@
 #include "cal_display.hpp"
 
+
+cal_display::cal_display() {}
+cal_display::~cal_display() {}
+
 std::string cal_display::get_welcome_msg() const
 {
     return welcome_msg;
