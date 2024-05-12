@@ -27,7 +27,7 @@ public:
     void perform_operation();
 
 private:
-    cal_display display_msg;
+    // cal_display display_msg;
     operation current_operation;
     bool operation_is_selected(std::string operation);
     long long int number_a;
