@@ -8,7 +8,7 @@ constexpr int size(const T (&)[N]) noexcept
 
 void copy(const int* input, int* output, int size)
 {
-    for(int i = 0; i < size; i++)
+    for(int i = 0; i < size; ++i)
     {
         output[i] = input[i];
     }
@@ -16,11 +16,12 @@ void copy(const int* input, int* output, int size)
 
 void reverse(int* arr, int size)
 {
-    for(int i = 0; i < (size/2); i++)
+    for(int i = 0; i < (size/2); ++i)
     {
-        int copy = arr[i];
-        arr[i] = arr[size - i];
-        arr[size - i] = copy;
+        // int copy = arr[i];
+        // arr[i] = arr[size - i - 1];
+        // arr[size - i - 1] = copy;
+        std::swap(arr[i], arr[size - 1 - i]);
     }
 }
 
@@ -31,7 +32,7 @@ bool compare(const int* lhs_arr, int lhs_size, const int* rhs_arr, int rhs_size)
         return false;
     }
 
-    for(int i = 0; i < lhs_size; i++)
+    for(int i = 0; i < lhs_size; ++i)
     {
         if(lhs_arr[i] != rhs_arr[i])
         {
