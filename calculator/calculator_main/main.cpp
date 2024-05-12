@@ -1,17 +1,16 @@
-#include <iostream>
 #include "cal_display.hpp"
 #include "calculator.hpp"
 
 int main()
 {
-    calculator calculator;
+    calculator calculator_object;
 
-    calculator.setect_operation();
+    calculator_object.setect_operation();
 
-    calculator.set_number_a();
-    calculator.set_number_b();
+    calculator_object.set_number_a();
+    calculator_object.set_number_b();
 
-    calculator.perform_operation();
+    calculator_object.perform_operation();
 
     return 0;
 }
