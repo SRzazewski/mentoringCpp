@@ -27,11 +27,10 @@ int main()
 	std::variant<int, std::errc> result = safe_divide(x1, x2);
 	if (std::holds_alternative<int>(result))
 	{
-		std::cout << x1 << " / " << x2 << " = " << std::get<int>(result);
+		std::cout << x1 << " / " << x2 << " = " << std::get<int>(result) << "\n";
 	}
 	else
 	{
-		// std::cout << std::error_code(std::get<std::errc>(result)).message() << "\n";
-		std::cout << "Error\n";
+		std::cout << std::make_error_code(std::get<std::errc>(result)).message() << "\n";
 	}
 }
