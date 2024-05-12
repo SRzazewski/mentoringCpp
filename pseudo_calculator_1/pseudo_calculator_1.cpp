@@ -5,9 +5,9 @@ int main()
     int x1 = 0;
     int x2 = 0;
     int operation = 0;
-	std::cout << "Put 1st number:";
+    std::cout << "Put 1st number:";
     std::cin >> x1;
-	std::cout << "Put 2nd number:";
+    std::cout << "Put 2nd number:";
     std::cin >> x2;
     std::cout << "1-addition\n";
     std::cout << "2-subtraction\n";
@@ -17,7 +17,7 @@ int main()
     std::cout << "Select operations:";
     std::cin >> operation;
 
-	if (operation != 0)
+    if (operation != 0)
     {
         if(operation == 1)
         {
