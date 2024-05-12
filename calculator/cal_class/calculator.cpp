@@ -1,12 +1,12 @@
 #include "calculator.hpp"
+#include <iostream>
 
-calculator::calculator() 
-{
-    this->current_operation = operation::no_selected;
-    this->number_a = 0;
-    this->number_b = 1; //for division, b cannot be equal 0
-    this->result = 0;
-    
+calculator::calculator():
+    current_operation(operation::no_selected),
+    number_a(0),
+    number_b(1), //for division, b cannot be equal 0
+    result(0)
+{    
     std::cout << welcome_msg << "\n";
 }
 
@@ -24,7 +24,7 @@ void calculator::setect_operation()
     std::string operation;
     std::cin >> operation;
 
-    while(!operation_is_selected(operation))
+    while(!set_operation(operation))
     {
         std::cout << selected_incorect_operation_msg << "\n";
         std::cout << select_operation_msg << "\n";
@@ -64,7 +64,7 @@ long long int calculator::get_number_b() const
 
 void calculator::perform_operation()
 {
-    if (this->get_current_operation() == operation::adding)
+    if (this->get_current_operation() == operation::addition)
     {
         long long int result = this->get_number_a() + this->get_number_b();
         std::cout << adding_result_msg << result << "\n";
@@ -86,17 +86,17 @@ void calculator::perform_operation()
             std::cout << wrong_enter_vaule_division_msg << "\n";
             this->set_number_b();
         }
-        float result = this->get_number_a() / this->get_number_b();
+        float result = static_cast<float>(this->get_number_a()) / static_cast<float>(this->get_number_b());
         std::cout << division_result_msg << result << "\n";
     }
 }
 
-bool calculator::operation_is_selected(std::string operation)
+bool calculator::set_operation(std::string_view operation)
 {
     if(operation == "+")
     {
         std::cout << selected_adding_operation_msg << "\n";
-        this->current_operation = operation::adding;
+        this->current_operation = operation::addition;
         return true;
     }
     else if(operation == "-")
