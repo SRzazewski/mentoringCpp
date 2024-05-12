@@ -9,7 +9,9 @@ enum class operation
     addition,
     subtraction,
     multiplication,
-    division
+    division,
+    rac,
+    arc
 };
 
 class calculator

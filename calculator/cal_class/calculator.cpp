@@ -19,6 +19,8 @@ void calculator::setect_operation()
     std::cout << operation_list_subtraction_msg << "\n";
     std::cout << operation_list_multiplication_msg << "\n";
     std::cout << operation_list_division_msg << "\n";
+    std::cout << operation_list_rac_msg<< "\n";
+    std::cout << operation_list_arc_msg<< "\n";
     std::cout << select_operation_msg << "\n";
 
     std::string operation;
@@ -89,6 +91,14 @@ void calculator::perform_operation()
         float result = static_cast<float>(this->get_number_a()) / static_cast<float>(this->get_number_b());
         std::cout << division_result_msg << result << "\n";
     }
+    else if(this->get_current_operation() == operation::rac)
+    {
+        
+    }
+    else if(this->get_current_operation() == operation::arc)
+    {
+        
+    }
 }
 
 bool calculator::set_operation(std::string_view operation)
@@ -115,6 +125,18 @@ bool calculator::set_operation(std::string_view operation)
     {
         std::cout << selected_division_operation_msg << "\n";
         this->current_operation = operation::division;
+        return true;
+    }
+    else if(operation == "rac")
+    {
+        std::cout << selected_rac_operation_msg << "\n";
+        this->current_operation = operation::rac;
+        return true;
+    }
+    else if(operation == "arc")
+    {
+        std::cout << selected_arc_operation_msg << "\n";
+        this->current_operation = operation::arc;
         return true;
     }
     else
