@@ -97,7 +97,7 @@ void calculator::perform_operation()
     }
     else if(this->get_current_operation() == operation::arc)
     {
-        
+        std::cout << arabic_number << " -> " << arabic_roman_convertion(arabic_number) << "\n";
     }
 }
 
@@ -144,4 +144,164 @@ bool calculator::set_operation(std::string_view operation)
         this->current_operation = operation::no_selected;
         return false;
     }
+}
+void calculator::set_roman_number()
+{
+
+}
+
+void calculator::set_arabic_number()
+{
+    std::cout << enter_arabic_num_msg << "\n";
+    long long int arabic;
+    std::cin >> arabic;
+    this->arabic_number = arabic;
+}
+
+int calculator::roman_arabic_convertion(std::string_view roman_number)
+{
+    int lenght = roman_number.length();
+    int result = 0;
+    for (int i = (lenght - 1); i >= 0; --i)
+    {
+        if (roman_number[i] == 'i' || roman_number[i] == 'I')
+        {
+
+        }
+    }
+}
+
+std::string calculator::arabic_roman_convertion(int arabic_number)
+{
+    std::string roman_number = "";
+
+    if(arabic_number >= 1000)
+    {
+        for(int i = 0; i < arabic_number/1000; ++i)
+        {
+            roman_number = roman_number + "M";
+        }
+        roman_number = roman_number + arabic_roman_convertion(arabic_number % 1000);
+    }
+    else if(arabic_number >= 100)
+    {
+        if(int x = arabic_number / 100; x == 9)
+        {
+            roman_number =+ "CM";
+        }
+        else if(x == 8)
+        {
+            roman_number =+ "DCCC";
+        }
+        else if(x == 7)
+        {
+            roman_number =+ "DCC";
+        }
+        else if(x == 6)
+        {
+            roman_number =+ "DC";
+        }
+        else if(x == 5)
+        {
+            roman_number =+ "D";
+        }
+        else if(x == 4)
+        {
+            roman_number =+ "CD";
+        }
+        else if(x == 3)
+        {
+            roman_number =+ "CCC";
+        }
+        else if(x == 2)
+        {
+            roman_number =+ "CC";
+        }
+        else if(x == 1)
+        {
+            roman_number =+ "C";
+        }
+        roman_number = roman_number + arabic_roman_convertion(arabic_number % 100);
+    }
+    else if(arabic_number >= 10)
+    {
+        if(int x = arabic_number / 10; x == 9)
+        {
+            roman_number =+ "XC";
+        }
+        else if(x == 8)
+        {
+            roman_number =+ "LXXX";
+        }
+        else if(x == 7)
+        {
+            roman_number =+ "LXX";
+        }
+        else if(x == 6)
+        {
+            roman_number =+ "LX";
+        }
+        else if(x == 5)
+        {
+            roman_number =+ "L";
+        }
+        else if(x == 4)
+        {
+            roman_number =+ "XL";
+        }
+        else if(x == 3)
+        {
+            roman_number =+ "XXX";
+        }
+        else if(x == 2)
+        {
+            roman_number =+ "XX";
+        }
+        else if(x == 1)
+        {
+            roman_number =+ "X";
+        }
+        roman_number = roman_number + arabic_roman_convertion(arabic_number % 10);
+        
+    }
+    else if(arabic_number > 0)
+    {
+        if(int x = arabic_number; x == 9)
+        {
+            roman_number =+ "IX";
+        }
+        else if(x == 8)
+        {
+            roman_number =+ "VIII";
+        }
+        else if(x == 7)
+        {
+            roman_number =+ "VII";
+        }
+        else if(x == 6)
+        {
+            roman_number =+ "VI";
+        }
+        else if(x == 5)
+        {
+            roman_number =+ "V";
+        }
+        else if(x == 4)
+        {
+            roman_number =+ "IV";
+        }
+        else if(x == 3)
+        {
+            roman_number =+ "III";
+        }
+        else if(x == 2)
+        {
+            roman_number =+ "II";
+        }
+        else if(x == 1)
+        {
+            roman_number =+ "I";
+        }
+    }
+    return roman_number;
 }
