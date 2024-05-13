@@ -19,6 +19,10 @@ int main()
     {
         calculator_object.set_arabic_number();
     }
+    else if(curr_operation == operation::rac)
+    {
+        calculator_object.set_roman_number();
+    }
 
     calculator_object.perform_operation();
 

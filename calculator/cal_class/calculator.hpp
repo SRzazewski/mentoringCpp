@@ -33,7 +33,6 @@ private:
     operation current_operation;
     long long int number_a;
     long long int number_b;
-    long long int result;
     std::string roman_number;
     long long int arabic_number;
     

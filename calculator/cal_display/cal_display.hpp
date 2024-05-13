@@ -27,7 +27,7 @@ const std::string adding_result_msg = "a + b = ";
 const std::string subtraction_result_msg = "a - b = ";
 const std::string multiplication_result_msg = "a * b = ";
 const std::string division_result_msg = "a / b = ";
-const std::string wrong_enter_vaule_division_msg = "b can not be equal 0!!";
+const std::string wrong_enter_vaule_division_msg = "b can not be equal 0!";
 // const std::string _msg = "";
 
 #endif
