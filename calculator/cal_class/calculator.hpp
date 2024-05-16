@@ -37,8 +37,8 @@ private:
     long long int arabic_number;
     
     bool set_operation(std::string_view operation);
-    int roman_arabic_convertion(std::string_view roman_number);
-    std::string arabic_roman_convertion(int arabic_number);
+    int roman_to_arabic(std::string_view roman_number);
+    std::string arabic_to_roman(int arabic_number);
 };
 
 #endif

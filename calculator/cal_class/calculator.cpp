@@ -94,7 +94,7 @@ void calculator::perform_operation()
     }
     else if(this->get_current_operation() == operation::rac)
     {
-        int arabic_num = roman_arabic_convertion(roman_number);
+        int arabic_num = roman_to_arabic(roman_number);
         if(arabic_num != 0)
         {
             std::cout << roman_number << " -> " << arabic_num << "\n";
@@ -106,7 +106,7 @@ void calculator::perform_operation()
     }
     else if(this->get_current_operation() == operation::arc)
     {
-        std::cout << arabic_number << " -> " << arabic_roman_convertion(arabic_number) << "\n";
+        std::cout << arabic_number << " -> " << arabic_to_roman(arabic_number) << "\n";
     }
 }
 
@@ -170,7 +170,7 @@ void calculator::set_arabic_number()
     this->arabic_number = arabic;
 }
 
-int calculator::roman_arabic_convertion(std::string_view roman_number)
+int calculator::roman_to_arabic(std::string_view roman_number)
 {
     int lenght = roman_number.length();
     int result = 0;
@@ -265,7 +265,7 @@ int calculator::roman_arabic_convertion(std::string_view roman_number)
     return result;
 }
 
-std::string calculator::arabic_roman_convertion(int arabic_number)
+std::string calculator::arabic_to_roman(int arabic_number)
 {
     std::string roman_number = "";
 
@@ -275,7 +275,7 @@ std::string calculator::arabic_roman_convertion(int arabic_number)
         {
             roman_number = roman_number + "M";
         }
-        roman_number = roman_number + arabic_roman_convertion(arabic_number % 1000);
+        roman_number = roman_number + arabic_to_roman(arabic_number % 1000);
     }
     else if(arabic_number >= 100)
     {
@@ -315,7 +315,7 @@ std::string calculator::arabic_roman_convertion(int arabic_number)
         {
             roman_number =+ "C";
         }
-        roman_number = roman_number + arabic_roman_convertion(arabic_number % 100);
+        roman_number = roman_number + arabic_to_roman(arabic_number % 100);
     }
     else if(arabic_number >= 10)
     {
@@ -355,7 +355,7 @@ std::string calculator::arabic_roman_convertion(int arabic_number)
         {
             roman_number =+ "X";
         }
-        roman_number = roman_number + arabic_roman_convertion(arabic_number % 10);
+        roman_number = roman_number + arabic_to_roman(arabic_number % 10);
         
     }
     else if(arabic_number > 0)
