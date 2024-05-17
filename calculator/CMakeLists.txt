@@ -1,6 +1,10 @@
+set(BUILD_TESTS ON CACHE BOOL "Includes tests to build process")
+
 add_library(CALCULATOR_CLASS STATIC
     cal_class/calculator.cpp
 )
+
+add_library(CALCULATOR_APP::CALCULATOR_CLASS ALIAS CALCULATOR_CLASS)
 
 target_include_directories(CALCULATOR_CLASS 
     INTERFACE 
@@ -19,22 +23,16 @@ target_include_directories(CAL_DISPLAY
         ${CMAKE_CURRENT_LIST_DIR}/cal_display
 )
 
-add_library(CALCULATOR_APP::CALCULATOR_CLASS ALIAS CALCULATOR_CLASS)
-
 add_executable(CALCULATOR_APP 
-    calculator_main/main.cpp)
+    calculator_main/main.cpp
+)
 
 target_link_libraries(CALCULATOR_APP 
     PRIVATE
         CALCULATOR_APP::CAL_DISPLAY
-        CALCULATOR_APP::CALCULATOR_CLASS)
-
-include(FetchContent)
-FetchContent_Declare(
-    googletest
-    URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+        CALCULATOR_APP::CALCULATOR_CLASS
 )
 
-FetchContent_MakeAvailable(googletest)
-
-add_subdirectory(UnitTests)
+if(BUILD_TESTS)
+    add_subdirectory(unit_tests)
+endif()

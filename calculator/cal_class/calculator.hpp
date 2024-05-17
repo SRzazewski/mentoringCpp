@@ -1,7 +1,7 @@
 #ifndef CALCULATOR_HPP
 #define CALCULATOR_HPP
 
-#include "cal_display.hpp"
+#include <string>
 
 enum class operation
 {
