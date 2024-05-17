@@ -13,7 +13,7 @@ calculator::calculator():
 
 calculator::~calculator() {}
 
-void calculator::setect_operation()
+void calculator::select_operation()
 {
     std::cout << operation_list_head_msg << "\n";
     std::cout << operation_list_adding_msg << "\n";
@@ -40,14 +40,14 @@ operation calculator::get_current_operation() const
     return this->current_operation;
 }
 
-void calculator::set_number_a()
+void calculator::enter_number_a()
 {
     std::cout << enter_number_a_msg << "\n";
     long long int a;
     std::cin >> a;
     this->number_a = a;
 }
-void calculator::set_number_b()
+void calculator::enter_number_b()
 {
     std::cout << enter_number_b_msg << "\n";
     long long int b;
@@ -87,7 +87,7 @@ void calculator::perform_operation()
         while (this->get_number_b() == 0)
         {
             std::cout << wrong_enter_vaule_division_msg << "\n";
-            this->set_number_b();
+            this->enter_number_b();
         }
         float result = static_cast<float>(this->get_number_a()) / static_cast<float>(this->get_number_b());
         std::cout << division_result_msg << result << "\n";
@@ -154,7 +154,7 @@ bool calculator::set_operation(std::string_view operation)
         return false;
     }
 }
-void calculator::set_roman_number()
+void calculator::enter_roman_number()
 {
     std::cout << enter_roman_num_msg << "\n";
     std::string roman;
@@ -162,7 +162,7 @@ void calculator::set_roman_number()
     this->roman_number = roman;
 }
 
-void calculator::set_arabic_number()
+void calculator::enter_arabic_number()
 {
     std::cout << enter_arabic_num_msg << "\n";
     long long int arabic;
@@ -172,12 +172,12 @@ void calculator::set_arabic_number()
 
 int calculator::roman_to_arabic(std::string_view roman_number)
 {
-    int lenght = roman_number.length();
+    int length = roman_number.length();
     int result = 0;
     int c_repetition = 0;
     int x_repetition = 0;
     int i_repetition = 0;
-    for (int i = 0; i < lenght; ++i)
+    for (int i = 0; i < length; ++i)
     {
         if (roman_number[i] == 'M' && roman_number[i-1] != 'C')
         {
@@ -246,7 +246,7 @@ int calculator::roman_to_arabic(std::string_view roman_number)
             result = result + 4;
             ++i;
         } 
-        else if ((roman_number[i] == 'I' && (i == lenght - 1))
+        else if ((roman_number[i] == 'I' && (i == length - 1))
                 || (roman_number[i] == 'I' && roman_number[i+1] != 'M' && roman_number[i+1] != 'D'
                 && roman_number[i+1] != 'C' && roman_number[i+1] != 'L' && roman_number[i+1] != 'X' 
                 && roman_number[i+1] != 'V' && roman_number[i+1] == 'I'))

@@ -19,15 +19,15 @@ class calculator
 public:
     calculator();
     ~calculator();
-    void setect_operation();
+    void select_operation();
     operation get_current_operation() const;
-    void set_number_a();
-    void set_number_b();
+    void enter_number_a();
+    void enter_number_b();
     long long int get_number_a() const;
     long long int get_number_b() const;
     void perform_operation();
-    void set_roman_number();
-    void set_arabic_number();
+    void enter_roman_number();
+    void enter_arabic_number();
 
 private:
     operation current_operation;
