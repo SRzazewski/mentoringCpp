@@ -13,6 +13,10 @@ enum class operation
     rac,
     arc
 };
+ 
+constexpr std::string hundreds[9] = {"C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"}; 
+constexpr std::string tens[9] = {"X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+constexpr std::string units[9] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
 
 class calculator
 {
