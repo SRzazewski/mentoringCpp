@@ -175,94 +175,81 @@ int calculator::roman_to_arabic(std::string_view roman_number)
 {
     int length = roman_number.length();
     int result = 0;
-    int c_repetition = 0;
-    int x_repetition = 0;
-    int i_repetition = 0;
-    for (int i = 0; i < length; ++i)
+    int main_position_pointer = 0;
+
+    for(int i = main_position_pointer; i < length; ++i)
     {
-        if (roman_number[i] == 'M' && roman_number[i-1] != 'C')
+        int position = main_position_pointer;
+        if(roman_number[i] == 'M')
         {
-            result = result + 1000;
-        }
-        else if (roman_number[i] == 'C' && roman_number[i+1] == 'M')
-        {
-            result = result + 900;
-            ++i;
-        }
-        else if (roman_number[i] == 'D' && roman_number[i+1] != 'M' && roman_number[i-1] != 'C')
-        {
-            result = result + 500;
-        }
-        else if (roman_number[i] == 'C' && roman_number[i+1] == 'D')
-        {
-            result = result + 400;
-            ++i;
-        }
-        else if (roman_number[i] == 'C' && roman_number[i+1] != 'M' && roman_number[i+1] != 'D' 
-                && roman_number[i-1] != 'X')
-        {
-            result = result + 100;
-            if(++c_repetition > 3)
+            result = result + roman_arbic_thousands.arbic;
+            position = i + 1;
+            main_position_pointer = position;
+            if(position == length)
             {
-                return 0;
+                return result;
             }
         }
-        else if (roman_number[i] == 'X' && roman_number[i+1] == 'C')
+        else 
         {
-            result = result + 90;
-            ++i;
-        }
-        else if (roman_number[i] == 'L' && roman_number[i+1] != 'M' && roman_number[i+1] != 'D'
-                && roman_number[i+1] != 'C' && roman_number[i-1] != 'X')
-        {
-            result = result + 50;
-        }
-        else if (roman_number[i] == 'X' && roman_number[i+1] == 'L')
-        {
-            result = result + 40;
-            ++i;
-        }
-        else if (roman_number[i] == 'X' && roman_number[i+1] != 'M' && roman_number[i+1] != 'D'
-                && roman_number[i+1] != 'C' && roman_number[i+1] != 'L' && roman_number[i-1] != 'I')
-        {
-            result = result + 10;
-            if(++x_repetition > 3)
-            {
-                return 0;
-            }
-        }
-        else if (roman_number[i] == 'I' && roman_number[i+1] == 'X')
-        {
-            result = result + 9;
-            ++i;
-        }
-        else if (roman_number[i] == 'V' && roman_number[i+1] != 'M' && roman_number[i+1] != 'D'
-                && roman_number[i+1] != 'C' && roman_number[i+1] != 'L' && roman_number[i+1] != 'X'
-                && roman_number[i-1] != 'I')
-        {
-            result = result + 5;
-        }
-        else if (roman_number[i] == 'I' && roman_number[i+1] == 'V')
-        {
-            result = result + 4;
-            ++i;
-        } 
-        else if ((roman_number[i] == 'I' && (i == length - 1))
-                || (roman_number[i] == 'I' && roman_number[i+1] != 'M' && roman_number[i+1] != 'D'
-                && roman_number[i+1] != 'C' && roman_number[i+1] != 'L' && roman_number[i+1] != 'X' 
-                && roman_number[i+1] != 'V' && roman_number[i+1] == 'I'))
-        {
-            result = result + 1;
-            if(++i_repetition > 3)
-            {
-                return 0;
-            }
-        }
-        else
-        {
-            return 0;
+            break;
         }
     }
+
+    for(int i = 0; i< 9; ++i)
+    {
+        int position = main_position_pointer;
+        int last_position = position;
+        position = roman_number.find(roman_arbic_hundreds[i].roman, last_position);
+        if(position == main_position_pointer)
+        {
+            result = result + roman_arbic_hundreds[i].arbic;
+            position = position + roman_arbic_hundreds[i].roman.length();
+            main_position_pointer = position;
+            if(position == length)
+            {
+                return result;
+            }
+            break;
+        }
+    }
+
+    for(int i = 0; i< 9; ++i)
+    {
+        int position = main_position_pointer;
+        int last_position = position;
+        position = roman_number.find(roman_arbic_tens[i].roman, last_position);
+        if(position == main_position_pointer)
+        {
+            result = result + roman_arbic_tens[i].arbic;
+            position = position + roman_arbic_tens[i].roman.length();
+            main_position_pointer = position;
+            if(position == length)
+            {
+                return result;
+            }
+            break;
+        }
+    }
+
+    for(int i = 0; i< 9; ++i)
+    {
+        int position = main_position_pointer;
+        int last_position = position;
+        position = roman_number.find(roman_arbic_units[i].roman, last_position);
+        if(position == main_position_pointer)
+        {
+            result = result + roman_arbic_units[i].arbic;
+            position = position + roman_arbic_units[i].roman.length();
+            main_position_pointer = position;
+            if(position == length)
+            {
+                return result;
+            }
+            break;
+        }
+    }
+    result = 0;
     return result;
 }
 
