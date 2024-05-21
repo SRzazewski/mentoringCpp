@@ -2,6 +2,7 @@
 #define CALCULATOR_HPP
 
 #include <string>
+#include <array>
 
 enum class operation
 {
@@ -17,12 +18,12 @@ enum class operation
 struct roman_arabic
 {
     const std::string roman;
-    const int arbic;
+    const int arabic;
 };
 
-constexpr roman_arabic roman_arbic_thousands = {"M",  1000};
-constexpr roman_arabic roman_arbic_hundreds[9] =
-{{"CM", 900},
+constexpr roman_arabic roman_arbic_thousand = {"M",  1000};
+constexpr std::array<roman_arabic, 9> roman_arbic_hundreds =
+{{{"CM", 900},
 {"DCCC",800},
 {"DCC", 700},
 {"DC",  600},
@@ -30,10 +31,10 @@ constexpr roman_arabic roman_arbic_hundreds[9] =
 {"CD",  400},
 {"CCC", 300},
 {"CC",  200},
-{"C",   100}};
+{"C",   100}}};
 
-constexpr roman_arabic roman_arbic_tens[9] =
-{{"XC", 90},
+constexpr std::array<roman_arabic, 9> roman_arbic_tens =
+{{{"XC", 90},
 {"LXXX",80},
 {"LXX", 70},
 {"LX",  60},
@@ -41,10 +42,10 @@ constexpr roman_arabic roman_arbic_tens[9] =
 {"XL",  40},
 {"XXX", 30},
 {"XX",  20},
-{"X",   10}};
+{"X",   10}}};
 
-constexpr roman_arabic roman_arbic_units[9] =
-{{"IX", 9},
+constexpr std::array<roman_arabic, 9> roman_arbic_units =
+{{{"IX", 9},
 {"VIII",8},
 {"VII", 7},
 {"VI",  6},
@@ -52,11 +53,11 @@ constexpr roman_arabic roman_arbic_units[9] =
 {"IV",  4},
 {"III", 3},
 {"II",  2},
-{"I",   1}};
+{"I",   1}}};
 
-constexpr std::string hundreds[9] = {"C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"}; 
-constexpr std::string tens[9] = {"X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
-constexpr std::string units[9] = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+constexpr std::array<std::string, 10> hundreds = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"}; 
+constexpr std::array<std::string, 10> tens = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+constexpr std::array<std::string, 10> units = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
 
 class calculator
 {

@@ -9,7 +9,7 @@ calculator::calculator():
     roman_number(""),
     arabic_number(0)
 {    
-    std::cout << welcome_msg << "\n";
+    // std::cout << welcome_msg << "\n";
 }
 
 calculator::~calculator() {}
@@ -173,22 +173,14 @@ void calculator::enter_arabic_number()
 
 int calculator::roman_to_arabic(std::string_view roman_number)
 {
-    int length = roman_number.length();
     int result = 0;
-    int main_position_pointer = 0;
+    int position = 0;
 
-    for(int i = main_position_pointer; i < length; ++i)
+    for(; position < roman_number.length(); ++position)
     {
-        int position = main_position_pointer;
-        if(roman_number[i] == 'M')
+        if(roman_number[position] == 'M')
         {
-            result = result + roman_arbic_thousands.arbic;
-            position = i + 1;
-            main_position_pointer = position;
-            if(position == length)
-            {
-                return result;
-            }
+            result += roman_arbic_thousand.arabic;
         }
         else 
         {
@@ -196,85 +188,39 @@ int calculator::roman_to_arabic(std::string_view roman_number)
         }
     }
 
-    for(int i = 0; i< 9; ++i)
+    auto convert_multiples_power_of_ten = [&](std::array<roman_arabic, 9> multiples)
     {
-        int position = main_position_pointer;
-        int last_position = position;
-        position = roman_number.find(roman_arbic_hundreds[i].roman, last_position);
-        if(position == main_position_pointer)
+        for(int i = 0; i < multiples.size(); ++i)
         {
-            result = result + roman_arbic_hundreds[i].arbic;
-            position = position + roman_arbic_hundreds[i].roman.length();
-            main_position_pointer = position;
-            if(position == length)
+            if(multiples[i].roman == roman_number.substr(position, multiples[i].roman.length()))
             {
-                return result;
+                result += multiples[i].arabic;
+                position += multiples[i].roman.length();
+                break;
             }
-            break;
         }
-    }
+    };
 
-    for(int i = 0; i< 9; ++i)
+    convert_multiples_power_of_ten(roman_arbic_hundreds);
+    convert_multiples_power_of_ten(roman_arbic_tens);
+    convert_multiples_power_of_ten(roman_arbic_units);
+    
+    if(position != roman_number.length())
     {
-        int position = main_position_pointer;
-        int last_position = position;
-        position = roman_number.find(roman_arbic_tens[i].roman, last_position);
-        if(position == main_position_pointer)
-        {
-            result = result + roman_arbic_tens[i].arbic;
-            position = position + roman_arbic_tens[i].roman.length();
-            main_position_pointer = position;
-            if(position == length)
-            {
-                return result;
-            }
-            break;
-        }
+        result = 0;
     }
-
-    for(int i = 0; i< 9; ++i)
-    {
-        int position = main_position_pointer;
-        int last_position = position;
-        position = roman_number.find(roman_arbic_units[i].roman, last_position);
-        if(position == main_position_pointer)
-        {
-            result = result + roman_arbic_units[i].arbic;
-            position = position + roman_arbic_units[i].roman.length();
-            main_position_pointer = position;
-            if(position == length)
-            {
-                return result;
-            }
-            break;
-        }
-    }
-    result = 0;
     return result;
 }
 
 std::string calculator::arabic_to_roman(int arabic_number)
 {
-    std::string roman_number = "";
+    std::string roman_number(arabic_number/1000, 'M');
 
-    if(arabic_number >= 1000)
-    {
-        roman_number.append(arabic_number/1000, 'M');
-    }
+    roman_number += hundreds[((arabic_number % 1000) / 100)];
+    
+    roman_number += tens[((arabic_number % 100) / 10)];
+    
+    roman_number += units[(arabic_number % 10)];
 
-    if((arabic_number % 1000) >= 100)
-    {
-        roman_number = roman_number + hundreds[((arabic_number % 1000) / 100) - 1];
-    }
-    
-    if(arabic_number % 100 >= 10)
-    {
-        roman_number = roman_number + tens[((arabic_number % 100) / 10) - 1];
-    }
-    
-    if(arabic_number % 10 > 0)
-    {
-        roman_number = roman_number + units[(arabic_number % 10) - 1];
-    }
     return roman_number;
 }

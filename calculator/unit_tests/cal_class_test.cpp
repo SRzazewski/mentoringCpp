@@ -300,6 +300,12 @@ TEST(cal_class_unit_tests, test_roman_to_arabic_enter_IIIZ)
     EXPECT_EQ(tested_class.calculate_roman_to_arabic("IIIZ"), 0);
 }
 
+TEST(cal_class_unit_tests, test_roman_to_arabic_enter_empty)
+{
+    test_class_calculator tested_class = test_class_calculator();
+    EXPECT_EQ(tested_class.calculate_roman_to_arabic(""), 0);
+}
+
 TEST(cal_class_unit_tests, test_arabic_to_roman_enter_1111)
 {
     test_class_calculator tested_class = test_class_calculator();
